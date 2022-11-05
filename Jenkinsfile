@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building code..'
+                sh ./gradlew build
             }
         }
         stage('Test') {
@@ -12,9 +13,10 @@ pipeline {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
+        stage('Package') {
             steps {
-                echo 'Deploying....'
+                echo 'Building container....'
+                sh ./gradlew jib
             }
         }
     }

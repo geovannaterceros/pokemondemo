@@ -8,7 +8,7 @@ pipeline {
                 echo 'Compile project'
                 sh "chmod +x gradlew"
                 sh './gradlew build' 
-                archiveArtifacts artifacts: '**/app/build/*.jar', fingerprint: true 
+                archiveArtifacts artifacts: '**/app/build/libs/*.jar', fingerprint: true 
             }
         }
         stage('Test') {

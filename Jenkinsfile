@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    parameters { string(name: 'IMAGE_VER', defaultValue: 'latest', description: 'Container tag version') }
     stages {
         stage('Build') {
             steps {
@@ -17,9 +17,12 @@ pipeline {
             }
         }
         stage('Package') {
+           environment {
+                DOCKERHUB_CREDS = credentials('alsie-test-key-github')
+            }
             steps {
-                echo 'Building container....'
-                sh './gradlew jib'
+                echo 'Building JIB container....'
+                sh ('./gradlew jib -Pdockerhub_user=$DOCKERHUB_CREDS_USR -Pdockerhub_token=$DOCKERHUB_CREDS_PSW -Pimage_tag=${IMAGE_VER}')
             }
         }
     }

@@ -5,6 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building code..'
+                echo 'Compile project'
+                sh "chmod +x gradlew"
                 sh './gradlew build' 
                 archiveArtifacts artifacts: '**/build/*.jar', fingerprint: true 
             }

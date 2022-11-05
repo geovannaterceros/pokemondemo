@@ -5,7 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building code..'
-                sh ./gradlew build
+                sh './gradlew build' 
+                archiveArtifacts artifacts: '**/build/*.jar', fingerprint: true 
             }
         }
         stage('Test') {
@@ -16,7 +17,7 @@ pipeline {
         stage('Package') {
             steps {
                 echo 'Building container....'
-                sh ./gradlew jib
+                sh './gradlew jib'
             }
         }
     }

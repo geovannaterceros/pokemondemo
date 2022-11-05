@@ -38,20 +38,27 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'io.ffactory.pokemondemo.App'
+    mainClass = 'io.geovanna.pokemondemo.App'
 }
 
 jib {
     from {
         image = 'amazoncorretto:11.0.17'
+        auth {
+            username = dockerhub_user
+            password = dockerhub_token
+        }
     }
     to {
-        image = 'ffactory/pokemondemo'
-        credHelper = 'osxkeychain'
-        tags = ['0.1.2']
+        image = 'geovanna/pokemondemo'
+        auth {
+            username = dockerhub_user
+            password = dockerhub_token
+        }
+        tags = ["${image_tag}"]
     }
     container {
-        mainClass = 'io.ffactory.pokemondemo.App'
+        mainClass = 'io.geovanna.pokemondemo.App'
         ports = ['9090']
         format = 'OCI'
     }

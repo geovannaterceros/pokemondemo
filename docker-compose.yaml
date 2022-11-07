@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  database:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASS}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASS}"
+    networks:
+      - pokenet
+  backend:
+    image: ffactory/pokemondemo:latest
+    environment:
+      CONN_STR: "${CONN_STR}"
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_PASS: "${DB_PASS}"
+      APP_PORT: "${APP_PORT}"
+    ports:
+      - "9090:9090"
+    networks:
+      - pokenet
+  test:
+    image: ubuntu
+    stdin_open: true
+    tty: true
+    networks:
+      - pokenet
+
+networks:
+  pokenet:
+    driver: bridge

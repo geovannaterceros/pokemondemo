@@ -11,7 +11,7 @@ services:
     networks:
       - pokenet
   backend:
-    image: ffactory/pokemondemo:latest
+    image: geovanna/pokemondemo:1.0.10
     environment:
       CONN_STR: "${CONN_STR}"
       DB_NAME: "${DB_NAME}"

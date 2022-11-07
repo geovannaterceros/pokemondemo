@@ -38,7 +38,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'io.geovanna.pokemondemo.App'
+    mainClass = 'io.ffactory.pokemondemo.App'
 }
 
 jib {
@@ -58,7 +58,7 @@ jib {
         tags = ["${image_tag}"]
     }
     container {
-        mainClass = 'io.geovanna.pokemondemo.App'
+        mainClass = 'io.ffactory.pokemondemo.App'
         ports = ['9090']
         format = 'OCI'
     }

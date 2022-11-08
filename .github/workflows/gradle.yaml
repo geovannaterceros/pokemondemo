@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  IMAGE_TAG: latest
+  IMAGE_TAG: 1.0.11
 
 jobs:
 
